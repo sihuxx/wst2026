@@ -7,11 +7,11 @@ const languageBtn = $(".language-btn")
 
 function languageRender() {
   if(language === true) {
-    languageBtn.textContent = "한/영 전환"
+    languageBtn.textContent = "Korean/English"
     $$(".en").forEach(en => {en.style.display = 'none'})
     $$(".kr").forEach(kr => {kr.style.display = 'flex'})
   } else {
-    languageBtn.textContent = "Korean/English"
+    languageBtn.textContent = "한/영 전환"
     $$(".en").forEach(en => {en.style.display = 'flex'})
     $$(".kr").forEach(kr => {kr.style.display = 'none'})
   }
