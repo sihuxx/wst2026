@@ -1,0 +1,37 @@
+* {margin: 0;padding: 0;list-style: none;text-decoration: none;color: inherit;box-sizing: border-box;}
+img {object-fit: cover;}
+
+.kr {display: flex;}
+.en {display: none;}
+header { width: 100%;height: 80px;display: flex; justify-content: center;align-items: center;border-bottom: 1px solid #eee;}
+header h3 {font-family: 'Courier New', Courier, monospace;font-size: 22px;}
+.header-content {width: 1200px;display: flex;align-items: center;justify-content: space-between;}
+.inner-content {display: flex;flex-direction: column;align-items: center;justify-content: center;width: 1200px;}
+button {cursor: pointer;padding: 5px 10px;border-radius: 30px;border: 1px solid #333;color: #333;background-color: #eee;}
+
+/* 1. 시작 화면 */
+
+.start-link {animation: startLink 1s infinite;}
+@keyframes startLink { 0%, 100% {opacity: 1;} 50% {opacity: 0;} }
+.start-scene {display: flex;justify-content: center;align-items: center;height: 800px;}
+.start-scene > div {flex-direction: column;gap: 20px;}
+.start-scene > div h1 { font-family: 'Courier New', Courier, monospace; font-size: 45px;}
+.start-scene > div p {color: #333;}
+
+/* 프레임 선택 화면 */
+
+.frame-scene {display: flex;justify-content: center;align-items: center;height: 800px;}
+.frame-scene > div {gap: 100px;}
+.card-content .card {transition: .3s;cursor: pointer;opacity: 0.5;}
+.card-content .card.active {opacity: 1;}
+.card-content {width: 100%;display: flex;justify-content: space-between; align-items: center;}
+.btn-content {display: flex;width: 100%;justify-content: end;}
+.start-btn {padding: 10px 15px;border-radius: 30px;border: 1px solid #333;color: #ffffff;background-color: #333;}
+.start-btn.disabled {pointer-events: none;background-color: #c9c9c9;color: #333;}
+
+/* 촬영 화면 */
+.shoot-scene {display: flex;flex-direction: column;align-items: center;height: 800px;justify-content: center;}
+.shoot-scene > div {gap: 20px;}
+.shoot-content {width: 800px;height: 450px;border: 1px solid #c4c4c4;}
+.shoot-grid {display: flex;width: 800px;justify-content: space-between;height: 120px;gap: 20px;}
+.shoot-grid .shoot {border: 1px solid #c4c4c4;width: 100%;height: 100%;}
