@@ -7,7 +7,7 @@ header { width: 100%;height: 80px;display: flex; justify-content: center;align-i
 header h3 {font-family: 'Courier New', Courier, monospace;font-size: 22px;}
 .header-content {width: 1200px;display: flex;align-items: center;justify-content: space-between;}
 .inner-content {display: flex;flex-direction: column;align-items: center;justify-content: center;width: 1200px;}
-button {cursor: pointer;padding: 5px 10px;border-radius: 30px;border: 1px solid #333;color: #333;background-color: #eee;}
+button {cursor: pointer !important; padding: 5px 10px;border-radius: 30px;border: 1px solid #333;color: #333;background-color: #eee;}
 
 /* 1. 시작 화면 */
 
@@ -35,3 +35,6 @@ button {cursor: pointer;padding: 5px 10px;border-radius: 30px;border: 1px solid 
 .shoot-content {width: 800px;height: 450px;border: 1px solid #c4c4c4;}
 .shoot-grid {display: flex;width: 800px;justify-content: space-between;height: 120px;gap: 20px;}
 .shoot-grid .shoot {border: 1px solid #c4c4c4;width: 100%;height: 100%;}
+.shoot-grid .shoot img {width: 100%;height: 100%;}
+.flash {display: none; width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: rgb(255, 255, 255);z-index: 10;}
+.flash.on {display: block;}

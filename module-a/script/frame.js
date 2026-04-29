@@ -12,7 +12,13 @@ cards.forEach(card => {
 function btnRender() {
   startBtn.textContent = language ? "시작하기" : "start"
 }
+
 startBtn.onclick = () => {
+  if(frame === undefined) {
+    alert("프레임을 선택해주세요")
+    return
+  }
+  startBtn.classList.remove("disabled")
   localStorage.setItem("frame", JSON.stringify({frame}))
   location.href = "./shoot.html"
 }
