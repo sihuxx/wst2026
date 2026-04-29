@@ -54,5 +54,4 @@ function shoot() {
         getPhoto()
     }
 }
-
 getPhoto()
