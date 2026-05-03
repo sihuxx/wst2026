@@ -19,16 +19,22 @@
   </header>
 
   <main class="edit-scene">
-    <canvas></canvas>
-    <div class="shoot-grid p1">
-      <div class="shoot"></div>
-      <div class="shoot"></div>
-      <div class="shoot"></div>
-      <div class="shoot"></div>
+    <div class="inner-content">
+      <canvas></canvas>
+      <div class="shoot-grid p1">
+        <div class="shoot"></div>
+        <div class="shoot"></div>
+        <div class="shoot"></div>
+        <div class="shoot"></div>
+      </div>
+      <div class="filter-content p2"> 
+        <button class="active" onclick="setFilter('none', this)">기본</button>
+        <button onclick="setFilter('grayscale(100%)', this)">흑백</button>
+      </div>
+      <button class="next-btn" onclick="nextStep()" disabled>다음 ▶</button>
     </div>
-    <button class="next-btn" disabled>다음 ▶</button>
   </main>
-  
+
   <script src="./script/init.js"></script>
   <script src="./script/edit.js"></script>
 </body>

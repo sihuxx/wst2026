@@ -43,9 +43,13 @@ button {cursor: pointer !important; padding: 5px 10px;border-radius: 30px;border
 
 /* 편집 화면 */
 
-.edit-scene {position: relative;gap: 30px;display: flex;flex-direction: column;align-items: center;justify-content: center;}
+.edit-scene {margin: 50px 0; width: 100%;gap: 30px;display: flex;flex-direction: column;align-items: center;justify-content: center;}
+.edit-scene .inner-content {position: relative;}
 .edit-scene .shoot-grid {width: 700px;}
-.edit-scene .next-btn {position: absolute;top: 60px;right: 60px;background-color: black;color: white;font-weight: bold;padding: 15px 20px;font-size: 18px;}
+.edit-scene .next-btn {position: absolute;top: 0;right: 0;;background-color: black;color: white;font-weight: bold;padding: 15px 20px;font-size: 18px;}
 .edit-scene .next-btn:disabled {background-color: #a1a1a1;color: white;border: 0;}
 .edit-scene .shoot-grid .shoot {cursor: pointer;}
-.p2 {display: none;}
+.edit-scene .filter-content {display: flex;gap: 15px;}
+.edit-scene .filter-content button {padding: 10px 15px;}
+.edit-scene .filter-content button.active {background-color: black;color: white;}
+.edit-scene .p2, .edit-scene .p3 {display: none;}

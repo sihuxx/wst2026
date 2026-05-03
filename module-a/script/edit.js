@@ -5,6 +5,8 @@ const layout = localStorage.getItem('frame')
 
 let imageElement
 let photos = [null, null, null, null]
+let filter = 'none'
+let step = 1
 
 const FRAME_SLOTS = {
   1: [ // 세로 4컷 (1열 4행)
@@ -45,6 +47,21 @@ $$('.shoot').forEach((shoot, i) => {
   })
 })
 
+function nextStep() {
+  if (step >= 3) return
+  step++
+  [1, 2, 3].forEach(i => {
+    $('.p' + i).style.display = i === step ? 'flex' : 'none'
+  })
+}
+
+function setFilter(f, btn) {
+  filter = f
+  $$('.p2 button').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  render()
+}
+
 function render() {
   canvas.width = imageElement.width
   canvas.height = imageElement.height
@@ -61,7 +78,11 @@ function render() {
       const sh = h / ratio
       const sx = (photo.width - sw) / 2
       const sy = (photo.height - sh) / 2
+
+      ctx.save()
+      ctx.filter = filter
       ctx.drawImage(photo, sx, sy, sw, sh, x, y, w, h)
+      ctx.restore()
     }
   })
 }
