@@ -20,18 +20,33 @@
 
   <main class="edit-scene">
     <div class="inner-content">
-      <canvas></canvas>
+      <div class="canvas-frame">
+        <div class="sticker-layer"></div>
+        <canvas></canvas>
+      </div>
       <div class="shoot-grid p1">
         <div class="shoot"></div>
         <div class="shoot"></div>
         <div class="shoot"></div>
         <div class="shoot"></div>
       </div>
-      <div class="filter-content p2"> 
-        <button class="active" onclick="setFilter('none', this)">기본</button>
-        <button onclick="setFilter('grayscale(100%)', this)">흑백</button>
+      <div class="filter-content p2">
+        <button class="active" onclick="setFilter('none', this)"><span class="kr">기본</span><span class="en">Default</span></button>
+        <button onclick="setFilter('grayscale(100%)', this)"><span class="kr">흑백</span><span class="en">B&W</span></button>
       </div>
-      <button class="next-btn" onclick="nextStep()" disabled>다음 ▶</button>
+      <div class="p3 sticker-content">
+        <div class="sticker-list">
+          <img src="./asset/sticker_01.png" onclick="selectSticker(this)">
+          <img src="./asset/sticker_02.png" onclick="selectSticker(this)">
+          <img src="./asset/sticker_03.png" onclick="selectSticker(this)">
+          <img src="./asset/sticker_04.png" onclick="selectSticker(this)">
+          <div class="size-row">
+            <span>크기</span>
+            <input type="range" min="50" max="300" value="100" oninput="resizeSticker(this.value)">
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextStep()" disabled><span class="kr">다음 ▶</span><span class="en">Next ▶</span></button>
     </div>
   </main>
 

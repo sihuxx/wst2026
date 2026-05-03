@@ -3,6 +3,8 @@ const ctx = canvas.getContext('2d')
 const frameCuts = JSON.parse(localStorage.getItem('photos'))
 const layout = localStorage.getItem('frame')
 
+let selSticker = null
+let stickerSize = 100  // 슬라이더로 조절
 let imageElement
 let photos = [null, null, null, null]
 let filter = 'none'
@@ -53,6 +55,7 @@ function nextStep() {
   [1, 2, 3].forEach(i => {
     $('.p' + i).style.display = i === step ? 'flex' : 'none'
   })
+  $('.sticker-layer').style.pointerEvents = step === 3 ? 'all' : 'none'
 }
 
 function setFilter(f, btn) {
@@ -60,6 +63,54 @@ function setFilter(f, btn) {
   $$('.p2 button').forEach(b => b.classList.remove('active'))
   btn.classList.add('active')
   render()
+}
+
+function selectSticker(img) {
+  selSticker = img.src
+  $$('.sticker-list img').forEach(i => i.classList.remove('active'))
+  img.classList.add('active')
+}
+
+function resizeSticker(size) {
+  stickerSize = parseInt(size)  // 배치 전 크기만 저장
+}
+
+$('.sticker-layer').addEventListener('click', e => {
+  if (step !== 3) return
+  if (!selSticker) return
+  if (e.target.closest('.placed')) return
+
+  const rect = e.currentTarget.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  placeSticker(selSticker, x, y, stickerSize)
+})
+
+function placeSticker(src, x, y, size) {
+  const el = newEl('div', { className: 'placed' })
+  el.style.position = 'absolute'
+  el.style.left     = (x - size / 2) + 'px'
+  el.style.top      = (y - size / 2) + 'px'
+  el.style.width    = size + 'px'
+  el.style.height   = size + 'px'
+
+  const img = newEl('img', { src })
+  img.style.width        = '100%'
+  img.style.height       = '100%'
+  img.style.objectFit    = 'contain'
+  img.style.pointerEvents = 'none'
+
+  el.addEventListener('click', () => el.remove())
+
+  el.append(img)
+  $('.sticker-layer').append(el)
+}
+
+function stickerLayerRender() {
+  const layer = $('.sticker-layer')
+  const rect  = canvas.getBoundingClientRect()
+  layer.style.width  = rect.width  + 'px'
+  layer.style.height = rect.height + 'px'
 }
 
 function render() {
@@ -86,8 +137,9 @@ function render() {
     }
   })
 }
-
 canvas.addEventListener('click', e => {
+  if (step !== 1) return
+
   const rect = canvas.getBoundingClientRect()
   const scaleX = canvas.width / rect.width
   const scaleY = canvas.height / rect.height
@@ -109,8 +161,11 @@ function checkNext() {
 }
 
 function loadImage() {
-  imageElement = newEl('img', { src: `./asset/frame_0${layout}.png`})
-  imageElement.onload = render
+  imageElement = newEl('img', { src: `./asset/frame_0${layout}.png` })
+  imageElement.onload = () => {
+    render()
+    stickerLayerRender()
+  }
 }
 
 loadImage()
