@@ -22,7 +22,8 @@ button {cursor: pointer !important; padding: 5px 10px;border-radius: 30px;border
 
 .frame-scene {display: flex;justify-content: center;align-items: center;height: 800px;}
 .frame-scene > div {gap: 100px;}
-.card-content .card {transition: .3s;cursor: pointer;opacity: 0.5;}
+.card-content .card {transition: .3s;cursor: pointer;opacity: 0.5;height: 400px;display: flex;flex-direction:column;justify-content: center;position: relative;}
+.card-content .card p {position: absolute;bottom: 0;white-space: nowrap;}
 .card-content .card.active {opacity: 1;}
 .card-content {width: 100%;display: flex;justify-content: space-between; align-items: center;}
 .btn-content {display: flex;width: 100%;justify-content: end;}
@@ -38,3 +39,13 @@ button {cursor: pointer !important; padding: 5px 10px;border-radius: 30px;border
 .shoot-grid .shoot img {width: 100%;height: 100%;}
 .flash {display: none; width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: rgb(255, 255, 255);z-index: 10;}
 .flash.on {display: block;}
+.shoot-scene .timer-content {font-size: 18px;}
+
+/* 편집 화면 */
+
+.edit-scene {position: relative;gap: 30px;display: flex;flex-direction: column;align-items: center;justify-content: center;}
+.edit-scene .shoot-grid {width: 700px;}
+.edit-scene .next-btn {position: absolute;top: 60px;right: 60px;background-color: black;color: white;font-weight: bold;padding: 15px 20px;font-size: 18px;}
+.edit-scene .next-btn:disabled {background-color: #a1a1a1;color: white;border: 0;}
+.edit-scene .shoot-grid .shoot {cursor: pointer;}
+.p2 {display: none;}

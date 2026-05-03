@@ -19,7 +19,7 @@ startBtn.onclick = () => {
     return
   }
   startBtn.classList.remove("disabled")
-  localStorage.setItem("frame", JSON.stringify({frame}))
+  localStorage.setItem("frame", frame)
   location.href = "./shoot.html"
 }
 btnRender()

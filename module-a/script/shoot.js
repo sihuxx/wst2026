@@ -1,9 +1,9 @@
 let shootCount = 0
 let photos = []
 let timer = 5
+
 const shootBtn = $(".shoot-btn")
-const frameSet = JSON.parse(localStorage.getItem("frame"))
-const frame = frameSet.frame
+const frame = localStorage.getItem("frame")
 
 function getPhoto() {
     timer = 5
@@ -42,8 +42,7 @@ function shootFlash() {
 function shoot() {
     const image = randomImage()
     photos.push(image)
-    $$(".shoot > img")[shootCount].src = image
-    $$(".shoot > img")[shootCount].style.display = 'block'
+    $$(".shoot")[shootCount].append(newEl("img", { src: image }))
     shootFlash()
     shootCount++
 
@@ -54,4 +53,5 @@ function shoot() {
         getPhoto()
     }
 }
+
 getPhoto()

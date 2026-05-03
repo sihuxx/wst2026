@@ -2,8 +2,7 @@ const $ = (e) => document.querySelector(e)
 const $$ = (e) => [...document.querySelectorAll(e)]
 const newEl = (e, t) => Object.assign(document.createElement(e), t) 
 
-const setting = JSON.parse(localStorage.getItem("language")) ?? {language: true} 
-let language = setting.language
+let language = localStorage.getItem("language") ?? true
 const languageBtn = $(".language-btn")
 
 function languageRender() {
@@ -21,8 +20,7 @@ function languageRender() {
 languageBtn.onclick = () => {
   language = !language
   languageRender()
-  localStorage.setItem("language", JSON.stringify({ language }));
-  btnRender()
+  localStorage.setItem("language", language);
 }
 
 languageRender()
