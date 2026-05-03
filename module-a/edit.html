@@ -31,8 +31,10 @@
         <div class="shoot"></div>
       </div>
       <div class="filter-content p2">
-        <button class="active" onclick="setFilter('none', this)"><span class="kr">기본</span><span class="en">Default</span></button>
-        <button onclick="setFilter('grayscale(100%)', this)"><span class="kr">흑백</span><span class="en">B&W</span></button>
+        <button class="active" onclick="setFilter('none', this)"><span class="kr">기본</span><span
+            class="en">Default</span></button>
+        <button onclick="setFilter('grayscale(100%)', this)"><span class="kr">흑백</span><span
+            class="en">B&W</span></button>
       </div>
       <div class="p3 sticker-content">
         <div class="sticker-list">
@@ -46,7 +48,17 @@
           </div>
         </div>
       </div>
-      <button class="next-btn" onclick="nextStep()" disabled><span class="kr">다음 ▶</span><span class="en">Next ▶</span></button>
+      <div class="result-scene p4">
+        <div class="btn-box">
+          <div class="btns">
+            <button onclick="downloadImg('jpg')"><span class="kr">JPG 다운로드</span><span class="en">Download JPG</span></button>
+          <button onclick="downloadImg('png')"><span class="kr">PNG 다운로드</span><span class="en">Download PNG</span></button>
+          </div>
+          <button onclick="location.href='./index.html'"><span class="kr">홈으로</span><span class="en">Home</span></button>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextStep()" disabled><span class="kr">다음 ▶</span><span class="en">Next
+          ▶</span></button>
     </div>
   </main>
 

@@ -26,8 +26,8 @@ const FRAME_SLOTS = {
   3: [ // 2x2컷
     { x: 37, y: 40, w: 315, h: 417 },
     { x: 377, y: 40, w: 315, h: 417 },
-    { x: 36, y: 475, w: 315, h: 417 },
-    { x: 377, y: 475, w: 315, h: 417 },
+    { x: 36, y: 475, w: 315, h: 435 },
+    { x: 377, y: 475, w: 315, h: 435 },
   ],
 }
 
@@ -50,11 +50,12 @@ $$('.shoot').forEach((shoot, i) => {
 })
 
 function nextStep() {
-  if (step >= 3) return
+  if (step >= 4) return
   step++
-  [1, 2, 3].forEach(i => {
+  [1, 2, 3, 4].forEach(i => {
     $('.p' + i).style.display = i === step ? 'flex' : 'none'
   })
+  if(step === 4) $('.next-btn').style.display = 'none'
   $('.sticker-layer').style.pointerEvents = step === 3 ? 'all' : 'none'
 }
 
@@ -111,6 +112,49 @@ function stickerLayerRender() {
   const rect  = canvas.getBoundingClientRect()
   layer.style.width  = rect.width  + 'px'
   layer.style.height = rect.height + 'px'
+}
+
+function mergeStickers() {
+  return new Promise(resolve => {
+    const placed = $$('.placed')
+    if (!placed.length) { resolve(); return }
+
+    let loaded = 0
+    placed.forEach(el => {
+      const img     = el.querySelector('img')
+      const rect    = el.getBoundingClientRect()
+      const lRect   = $('.sticker-layer').getBoundingClientRect()
+      const scaleX  = canvas.width  / lRect.width
+      const scaleY  = canvas.height / lRect.height
+
+      const x = (rect.left - lRect.left) * scaleX
+      const y = (rect.top  - lRect.top)  * scaleY
+      const w = rect.width  * scaleX
+      const h = rect.height * scaleY
+
+      const stickerImg = new Image()
+      stickerImg.src = img.src
+      stickerImg.onload = () => {
+        ctx.drawImage(stickerImg, x, y, w, h)
+        loaded++
+        if (loaded === placed.length) resolve()
+      }
+    })
+  })
+}
+
+async function downloadImg(type) {
+  await mergeStickers()  // 스티커 캔버스에 합성
+
+  const link = document.createElement('a')
+  if (type === 'png') {
+    link.href     = canvas.toDataURL('image/png')
+    link.download = 'photobooth.png'
+  } else {
+    link.href     = canvas.toDataURL('image/jpeg', 0.9)
+    link.download = 'photobooth.jpg'
+  }
+  link.click()
 }
 
 function render() {
