@@ -18,7 +18,6 @@ startBtn.onclick = () => {
     alert("프레임을 선택해주세요")
     return
   }
-  startBtn.classList.remove("disabled")
   localStorage.setItem("frame", frame)
   location.href = "./shoot.html"
 }
